@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bouncing ball</title>
+    <!--style the app-->
+    <style>
+        .container{
+            position: relative;
+            width:600px;
+            height: 500px;
+            background-color: black;
+        }
+        #ball{
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: chartreuse;
+            border-radius: 50%;
+        }
+        #count{
+            font-size: 50px;
+            color:lime;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <!--div container-->
+    <div class="container">
+        <!--div ball-->
+        <div id="ball"></div>
+    </div>
+    <!--p tag -->
+    <p id="count"></p>
+    <!--add javascript code-->
+    <script>
+        /*set up ball position*/
+        var ballX=0;
+        var ballY=0;
+        /*set up the speed of the ball movement*/
+        var speedX =5;
+        var speedY=5;
+        /*set the width and the height of the app*/
+        var widthX=600;
+        var heightY =500;
+
+        /*initial counter*/
+        var counter=0;
+
+        /*create fuction */
+        function ballBounce(){
+           
+            /*set the position of the ball*/
+            var ballPos = document.getElementById("ball");
+            /*use if statement  to get the job done*/
+            if(ballX + speedX > widthX || ballX + speedX < 0){
+                speedX = -speedX;
+                counBall();
+            }
+            if(ballY + speedY > heightY || ballY + speedY < 0){
+                speedY = -speedY;
+            }
+            ballX+=speedX;/*ballX increment while moving to right*/
+            ballY+=speedY;/*ballY increment while moving down*/
+            /*get the ball position and add speed into it */
+            ballPos.style.left = ballX + "px";
+            ballPos.style.top = ballY + "px";
+          
+        }
+        /*set automatic movement by using setInterval*/
+        setInterval(ballBounce,10);
+    
+        /*set up another function fot counter*/
+        function counBall(){
+            /*variable position of the counter*/
+         var countPos = document.getElementById("count");
+         /*if statement for the counter*/
+         if(ballX + speedX > widthX || ballX + speedX){
+             counter++;
+            countPos.innerHTML="COUNTER:  "+counter;
+         }
+      
+        }
+        counBall();
+    </script>
+</body>
+</html>
